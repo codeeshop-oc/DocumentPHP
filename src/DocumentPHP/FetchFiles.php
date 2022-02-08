@@ -1,14 +1,14 @@
 <?php
 
-namespace CodeeshopOc\DocumentPHP;
+namespace DocumentPHP;
 
-include_once '/opt/lampp/htdocs/myshop1/system/engine/controller.php';
+include_once getcwd() . '../../../../system/engine/controller.php';
 
 error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
 class FetchFiles {
 	public $data = [];
-	public $destination_path = '/opt/lampp/htdocs/myshop1/catalog/controller/api/';
+	public $destination_path = getcwd() . '../../../../catalog/controller/api/';
 
 	function rrmdir($dir) {
 		// return;

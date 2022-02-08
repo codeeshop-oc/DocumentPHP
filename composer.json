@@ -27,12 +27,12 @@
   },
   "autoload": {
     "psr-4": {
-      "CodeeshopOc\\DocumentPHP\\": "src/"
+      "DocumentPHP\\": "src/DocumentPHP/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "CodeeshopOc\\DocumentPHP\\Tests\\": "tests/"
+      "DocumentPHP\\Tests\\": "tests/"
     }
   },
   "scripts": {
