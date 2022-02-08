@@ -2,45 +2,37 @@
 
 namespace DocumentPHP;
 
-include_once getcwd() . '../../../../system/engine/controller.php';
-
-error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+include_once getcwd() . '/system/engine/controller.php';
 
 class FetchFiles {
-	public $data = [];
-	public $destination_path = getcwd() . '../../../../catalog/controller/api/';
+	private $results = [];
+	private $destination_path = '';
 
-	function rrmdir($dir) {
-		// return;
-		if (is_dir($dir)) {
-			$objects = scandir($dir);
+	public function getResults() {
+		return $this->results;
+	}
 
-			foreach ($objects as $object) {
-				if ($object != '.' && $object != '..') {
-					if (filetype($dir . '/' . $object) == 'dir') {$this->rrmdir($dir . '/' . $object);} else {unlink($dir . '/' . $object);}
-				}
-			}
-
-			reset($objects);
-			// rmdir($dir);
+	public function setDestinationPath($path = '') {
+		if ($path) {
+			$this->destination_path = $path;
+		} else {
+			$this->destination_path = getcwd() . '/catalog/controller/api/';
 		}
 	}
 
-	function recursive_copy($src, $dst) {
+	private function recursive_copy($src) {
 		if (is_dir($src)) {
 			$dir = opendir($src);
 
 			while (($file = readdir($dir))) {
 				if ((substr($file, -1) != '_') && ($file != '.') && ($file != '..')) {
 					if (is_dir($src . '/' . $file)) {
-						$this->recursive_copy($src . '/' . $file, $dst . '/' . $file);
+						$this->recursive_copy($src . '/' . $file);
 					} else {
 						if (is_file($this->destination_path . $file)) {
-							$this->start_processing($this->destination_path . $file);
+							$this->start_fetching($this->destination_path . $file);
 							// print_r($this->destination_path . $file);
 						}
-						// die;
-						// copy($src . '/' . $file, $dst . '/' . $file);
 					}
 				}
 			}
@@ -48,21 +40,16 @@ class FetchFiles {
 
 			return;
 		} elseif (is_file($src)) {
-			$dir = substr($dst, 0, strrpos($dst, '/'));
-			// mkdir($dir, 0777, true);
-
-			print_r($src);die;
-			// copy($src, $dst);
 		} else {
 			die('<strong>Not found : </strong> ' . $src);
 			// print_r($src);die;
 		}
 	}
 
-	function get_function($method, $class = null) {
+	private function get_function($method, $class = null) {
 
 		if (!empty($class)) {
-			$func = new ReflectionMethod($class, $method);
+			$func = new \ReflectionMethod($class, $method);
 		} else {
 			$func = new ReflectionFunction($method);
 		}
@@ -84,7 +71,12 @@ class FetchFiles {
 		return $body;
 	}
 
-	function start_processing($file) {
+	public function start_processing($path = '') {
+		$this->setDestinationPath($path);
+		$this->recursive_copy($this->destination_path);
+	}
+
+	private function start_fetching($file) {
 		include_once $file;
 
 		$start = strpos($file, 'controller') + strlen('controller');
@@ -116,24 +108,25 @@ class FetchFiles {
 			}
 		}
 
-		$this->data[$class_name] = $current_data;
-		// print_r($this->data);
+		$this->results[$class_name] = $current_data;
+		// print_r($this->results);
 		// echo "</pre>";
 	}
 
-	function findMethodTypesVars($function_string = '') {
+	private function findMethodTypesVars($function_string = '') {
 		$method_types = [];
 		$method_types['POST'] = $this->getParams($function_string, "/->post\[/i", ['->post[', '\''], '');
 		$method_types['GET'] = $this->getParams($function_string, "/->get\[/i", ['->get[', '\''], '');
 		return $method_types;
 	}
 
-	function isReturningJSONResponse($function_string = '') {
+	private function isReturningJSONResponse($function_string = '') {
 		preg_match_all("/setOutput\(/i", $function_string, $matches);
 
 		return !empty($matches[0]) ? true : false;
 	}
-	function getParams($function_string, $pattern, $find, $replace = '') {
+
+	private function getParams($function_string, $pattern, $find, $replace = '') {
 		preg_match_all($pattern, $function_string, $matches, PREG_OFFSET_CAPTURE);
 
 		$var_names = [];
