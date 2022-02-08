@@ -36,7 +36,7 @@ Install DocumentPHP:
 
 There is a DocumentPHP composer package that you can use to install DocumentPHP.
 
-How to use DocumentPHP?
+How to use DocumentPHP ?
 -------------------------
 
 To run DocumentPHP after installing via composer and copy the main.php file and make changes accordingly ( file attached in this repo ).
@@ -54,3 +54,8 @@ Reaching out to us is easy, and can be done with:
 
 [Composer]: https://getcomposer.org/
 [codeeshop mail]: mailto:codeeshop2211@gmail.com
+
+Screenshots
+-------------------------
+
+![til](https://raw.githubusercontent.com/codeeshop-oc/document-php/main/screenshots/image1.png)
