@@ -48,7 +48,8 @@ Contact
 
 Reaching out to us is easy, and can be done with:
 
-* Twitter: https://twitter.com/codeeshop
+* Twitter: https://twitter.com/codeeshop1
+* Twitter 2: https://twitter.com/anantnegik7
 * Website: https://www.codeeshop.com
 * GitHub:  https://github.com/codeeshop-oc/document-php
 * E-mail:  codeeshop2211@gmail.com
