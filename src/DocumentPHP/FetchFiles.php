@@ -1,6 +1,6 @@
 <?php
 
-namespace Codeeshop\DocumentPHP;
+namespace CodeeshopOc\DocumentPHP;
 
 require_once '../../vendor/autoload.php';
 

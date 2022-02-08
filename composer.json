@@ -1,5 +1,5 @@
 {
-  "name": "codeeshop/documentphp",
+  "name": "codeeshop-oc/documentphp",
   "description": "DocumentPHP is a PHP Package for Documentation",
   "license": "MIT",
   "keywords": [
@@ -27,12 +27,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Codeeshop\\DocumentPHP\\": "src/"
+      "CodeeshopOc\\DocumentPHP\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Codeeshop\\DocumentPHP\\Tests\\": "tests/"
+      "CodeeshopOc\\DocumentPHP\\Tests\\": "tests/"
     }
   },
   "scripts": {
