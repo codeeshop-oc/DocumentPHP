@@ -1,0 +1,42 @@
+{
+  "name": "codeeshop/documentphp",
+  "description": "DocumentPHP is a PHP Package for Documentation",
+  "license": "MIT",
+  "keywords": [
+    "DocumentPHP",
+    "Document PHP",
+    "PHP Document",
+    "PHP Documentor",
+    "Documentation",
+    "Opencart Documentation",
+    "Opencart"
+  ],
+  "authors": [
+    {
+      "name": "Anant Negi",
+      "email": "codeeshop2211@gmail.com",
+      "homepage": "https://codeeshop.com",
+      "role": "Coffee Maker :)"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+  	"phpunit/phpunit": "^4.8.36"
+  },
+  "autoload": {
+    "psr-4": {
+      "Codeeshop\\DocumentPHP\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Codeeshop\\DocumentPHP\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "minimum-stability": "dev"
+}
