@@ -1,6 +1,6 @@
 {
   "name": "codeeshop-oc/document-php",
-  "description": "DocumentPHP is a PHP Package for Documentation",
+  "description": "DocumentPHP is a PHP Helper Package for preparing Documentation",
   "license": "MIT",
   "keywords": [
     "DocumentPHP",
